@@ -7,7 +7,7 @@ Please fill out all of the following sections to help us grade your submission:
 
 ## Student (to be completed individually)
 
-* First Last, amber079@umn.edu
+* Ray Amberg, amber079@umn.edu
 
 ## Link to Site
 
