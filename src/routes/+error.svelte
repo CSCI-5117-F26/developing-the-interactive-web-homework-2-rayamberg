@@ -1,0 +1,1 @@
+This is a custom 404 page (+error.svelte)! It should have a link to /todos. The spec does mention a /404 endpoint. So 

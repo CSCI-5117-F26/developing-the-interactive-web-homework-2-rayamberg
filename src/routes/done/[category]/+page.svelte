@@ -1,0 +1,2 @@
+<h1>done/:category</h1>
+<p>This is the route for the challenge. These pages show a filtered view of the full to do list only showing those items that belong to the category. If you create a todo item from todos/:category it should automatically add that item to that category</p>
