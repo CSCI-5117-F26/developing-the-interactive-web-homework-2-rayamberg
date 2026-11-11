@@ -37,5 +37,8 @@
 	},
 	"allowScripts": {
 		"fsevents@2.3.3": true
+	},
+	"dependencies": {
+		"mongodb": "^7.8.0"
 	}
 }
