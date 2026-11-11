@@ -1,4 +1,6 @@
-<h1>faire</h1><div class="splash-ipa">/fɛʀ/</div>
+<h1>faire</h1>
+<h2>a to-do app</h2>
+<div class="splash-ipa">/fɛʀ/</div>
 <div class="splash-lang">French</div>
 <div class="splash-pos">VERB</div>
 <ol>
