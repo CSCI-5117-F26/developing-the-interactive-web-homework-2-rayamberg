@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { enhance } from '$app/forms';
     let { data }  = $props();
 </script>
 
@@ -14,6 +15,12 @@
     </ul></li>
     <li>a link to visit /done</li>
 </ul>
+
+<form method="POST" action="?/create" use:enhance>
+    <label>
+        <input type="text" name="text" /><input type="submit" value="Add Todo">
+    </label>
+</form>
 {#each data.todos as todo (todo.id)}
 <div class="todo-item">
 <p>id: {todo.id}</p>
