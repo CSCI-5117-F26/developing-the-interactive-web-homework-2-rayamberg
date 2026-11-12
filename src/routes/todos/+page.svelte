@@ -1,3 +1,7 @@
+<script lang="ts">
+    let { data }  = $props();
+</script>
+
 <h1>Todos</h1>
 <p><strong>This page requires user login. If the user is not logged in redirect to /. There should also be a link to logout</strong></p>
 <p>This page should show a list of to-do items with the following features.</p>
@@ -10,3 +14,10 @@
     </ul></li>
     <li>a link to visit /done</li>
 </ul>
+{#each data.todos as todo (todo.id)}
+<div class="todo-item">
+<p>id: {todo.id}</p>
+<p>{todo.text}</p>
+<p>{todo.isDone}</p>
+</div>
+{/each}
