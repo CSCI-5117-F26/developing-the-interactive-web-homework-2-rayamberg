@@ -1,5 +1,5 @@
 //apparently we need to call this db.js even though it is TS
-import { deleteTodo, getTodos } from '#lib/server/db.js'
+import { deleteTodo, getTodos, setDone} from '#lib/server/db.js'
 import { createTodo } from '#lib/server/db.js';
 
 export async function load() {
@@ -18,5 +18,13 @@ export const actions = {
 		const id = String(data.get('id'));
 
 		await deleteTodo(id);
+	},
+	toggleDone: async ({ request }) => {
+		const data = await request.formData();
+		const id = String(data.get('id'));
+		//convert isDone's value from string to boolean
+		const isDone = data.get('isDone') === 'true';
+
+		await setDone(id, isDone);
 	}
 };

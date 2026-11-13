@@ -34,3 +34,10 @@ export async function createTodo(text: string) {
 export async function deleteTodo(id: string) {
    await todosColl.deleteOne({"_id": new ObjectId(id)})
 }
+
+export async function setDone(id: string, isDone: boolean) {
+   await todosColl.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { isDone }}
+   );
+}
