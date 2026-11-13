@@ -1,5 +1,6 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
+    import TodoItem from '#lib/components/TodoItem.svelte';
     let { data }  = $props();
 </script>
 
@@ -22,15 +23,5 @@
     </label>
 </form>
 {#each data.todos as todo (todo.id)}
-<div class="todo-item">
-<p>id: {todo.id}</p>
-<p>{todo.text}</p>
-<p>{todo.isDone}</p>
-<form method="POST" action="?/delete" use:enhance>
-    <label>
-        <input type="hidden" name="id" value={todo.id} />
-        <input type="submit" value="Delete" />
-    </label>
-</form>
-</div>
+    <TodoItem todo={todo} />
 {/each}
