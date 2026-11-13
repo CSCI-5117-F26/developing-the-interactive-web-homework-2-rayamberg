@@ -1,6 +1,6 @@
 /* Following instructions from https://www.mongodb.com/docs/drivers/node/current/connect/mongoclient/, although ignoring the stableapi params */
 import type { Todo } from '#lib/types.js';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import { MONGODB_URI } from '$app/env/private';
 
 const client =  new MongoClient(MONGODB_URI);
@@ -24,4 +24,8 @@ export async function getTodos() : Promise<Todo[]> {
 
 export async function createTodo(text: string) {
    await todosColl.insertOne({ text: text, isDone: false });
+}
+
+export async function deleteTodo(id: string) {
+   await todosColl.deleteOne({"_id": new ObjectId(id)})
 }

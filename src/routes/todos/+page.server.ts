@@ -1,5 +1,5 @@
 //apparently we need to call this db.js even though it is TS
-import { getTodos } from '#lib/server/db.js'
+import { deleteTodo, getTodos } from '#lib/server/db.js'
 import { createTodo } from '#lib/server/db.js';
 
 export async function load() {
@@ -11,6 +11,12 @@ export const actions = {
 		const data = await request.formData();
         const text = String(data.get('text'));
 
-		createTodo(text);
+		await createTodo(text);
+	},
+	delete: async ({ request }) => {
+		const data = await request.formData();
+		const id = String(data.get('id'));
+
+		await deleteTodo(id);
 	}
 };
