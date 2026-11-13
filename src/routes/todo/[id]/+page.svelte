@@ -15,6 +15,7 @@
 <h2>Challenge</h2>
 Allow users to change the category of a todo item
 
+<p><a href="/todos">Back to Todos</a></p>
 <h1>{todo.text}</h1>
 <p>This todo's done value is: {todo.isDone}</p>
 <p>Its id is {todo.id}</p>
