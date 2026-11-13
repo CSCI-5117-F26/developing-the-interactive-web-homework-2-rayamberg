@@ -18,12 +18,17 @@ export async function getTodos() : Promise<Todo[]> {
    return todos.map((todo) => ({
     id: todo._id.toString(),
     text: todo.text,
-    isDone: todo.isDone
+    isDone: todo.isDone,
+    createdAt: todo.createdAt
    }));
 }
 
 export async function createTodo(text: string) {
-   await todosColl.insertOne({ text: text, isDone: false });
+   await todosColl.insertOne({ 
+      text: text, 
+      isDone: false,
+      createdAt: new Date() 
+   });
 }
 
 export async function deleteTodo(id: string) {
