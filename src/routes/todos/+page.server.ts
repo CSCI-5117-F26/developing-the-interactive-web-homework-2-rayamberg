@@ -1,6 +1,4 @@
-//apparently we need to call this db.js even though it is TS
-import { deleteTodo, getTodos, setDone} from '#lib/server/db.js'
-import { createTodo } from '#lib/server/db.js';
+import { createTodo, deleteTodo, getTodos, setDone} from '#lib/server/db.ts'
 
 export async function load() {
     return { todos: await getTodos() };

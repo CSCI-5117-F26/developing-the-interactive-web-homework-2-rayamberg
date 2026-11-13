@@ -5,7 +5,7 @@
 
 <div class="todo-item">
 <p>id: {todo.id}</p>
-<p>{todo.text}</p>
+<p><a href="/todo/{todo.id}">{todo.text}</a></p>
 <p>{todo.isDone}</p>
 <form method="POST" action="?/toggleDone" use:enhance>
     <input type="hidden" name="id" value={todo.id} />

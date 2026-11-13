@@ -9,7 +9,9 @@ const DB_NAME = 'faire';
 export const db = client.db(DB_NAME);
 export const todosColl = db.collection('todos');
 
-export async function getTodos() : Promise<Todo[]> {
+/*TODO: Pun intended. 
+- specify return types for the exported functions. Apparently it's good practice to do that in TS */
+export async function getTodos() {
    /* we need to await toArray() since reading from find() returns one at a time for time 
    efficiency. We also sort by most recent, hence createdAt: -1 in the filter */
    const todos = await todosColl.find().sort({ createdAt: -1 }).toArray();
@@ -22,6 +24,17 @@ export async function getTodos() : Promise<Todo[]> {
     isDone: todo.isDone,
     createdAt: todo.createdAt
    }));
+}
+export async function getTodo(id: string) {
+   const todo = await todosColl.findOne({ _id: new ObjectId(id) }); 
+   if (!todo) return null;
+
+   return {
+      id: todo._id.toString(),
+      text: todo.text,
+      isDone: todo.isDone,
+      createdAt: todo.createdAt
+   }
 }
 
 export async function createTodo(text: string) {
