@@ -10,8 +10,9 @@ export const db = client.db(DB_NAME);
 export const todosColl = db.collection('todos');
 
 export async function getTodos() : Promise<Todo[]> {
-   //we need to await toArray() since reading from find() returns one at a time for time efficiency
-   const todos = await todosColl.find().toArray();
+   /* we need to await toArray() since reading from find() returns one at a time for time 
+   efficiency. We also sort by most recent, hence createdAt: -1 in the filter */
+   const todos = await todosColl.find().sort({ createdAt: -1 }).toArray();
 
    /* The id of each mongo doc is actually of type ObjectId. We want to convert this to a 
    string. Let's return that array instead.*/
