@@ -5,7 +5,7 @@
     let todo = $derived(data.todo); 
 </script>
 
-<h1>todo/[id]</h1>
+<!-- <h1>todo/[id]</h1>
 <p><strong>This page requires user login. If the user is not logged in redirect to /. There should also be a link to logout</strong></p>
 <p>This page shows a specific todo item, with the following features:</p>
 <ul>
@@ -15,7 +15,7 @@
     <li>A link to /todos</li>
 </ul>
 <h2>Challenge</h2>
-Allow users to change the category of a todo item
+Allow users to change the category of a todo item -->
 
 <p><a href="/todos">Back to Todos</a></p>
 <h1>{todo.text}</h1>
