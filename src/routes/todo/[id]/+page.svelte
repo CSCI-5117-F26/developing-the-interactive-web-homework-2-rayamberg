@@ -1,4 +1,6 @@
 <script lang="ts">
+	import TodoItemControls from '#lib/components/TodoItemControls.svelte';
+
     let { data } = $props();
     let todo = $derived(data.todo); 
 </script>
@@ -20,3 +22,4 @@ Allow users to change the category of a todo item
 <p>This todo's done value is: {todo.isDone}</p>
 <p>Its id is {todo.id}</p>
 <p>It was created at {todo.createdAt}</p>
+<TodoItemControls todo={todo} />
