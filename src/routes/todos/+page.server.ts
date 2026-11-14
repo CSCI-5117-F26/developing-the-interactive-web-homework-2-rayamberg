@@ -1,7 +1,8 @@
 import { createTodo, deleteTodo, getTodos, setDone} from '#lib/server/db.ts'
 
 export async function load() {
-    return { todos: await getTodos() };
+	// get all todos where isDone is false (i.e. incomplete)
+    return { todos: await getTodos({isDone: false}) };
 }
 
 export const actions = {

@@ -1,5 +1,6 @@
 import { getTodos } from '#lib/server/db.ts'
 
 export async function load() {
-    return { todos: await getTodos() };
+    // get todos where isDone is true (i.e. completed)
+    return { todos: await getTodos({isDone: true}) };
 }

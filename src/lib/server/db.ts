@@ -10,11 +10,19 @@ export const db = client.db(DB_NAME);
 export const todosColl = db.collection('todos');
 
 /*TODO: Pun intended. 
-- specify return types for the exported functions. Apparently it's good practice to do that in TS */
-export async function getTodos() {
+- add return types for the exported functions. Apparently it's good practice to do that in TS */
+
+/* getTodos() by default will return ALL todos. If you want just the active todos (not completed)
+, then call getTodos({isDone: false}) and if you want only completed todos, call it with 
+{isDone: true} */
+export async function getTodos({ isDone }: { isDone? : boolean } = {}) {
+   let filter : { isDone? : boolean } = {}
+   if (isDone !== undefined) {
+      filter =  { isDone };
+   }
    /* we need to await toArray() since reading from find() returns one at a time for time 
    efficiency. We also sort by most recent, hence createdAt: -1 in the filter */
-   const todos = await todosColl.find().sort({ createdAt: -1 }).toArray();
+   const todos = await todosColl.find(filter).sort({ createdAt: -1 }).toArray();
 
    /* The id of each mongo doc is actually of type ObjectId. We want to convert this to a 
    string. Let's return that array instead.*/
