@@ -1,18 +1,28 @@
-<h1>faire</h1>
-<h2>a to-do app</h2>
-<div class="splash-ipa">/fɛʀ/</div>
-<div class="splash-lang">French</div>
-<div class="splash-pos">VERB</div>
-<ol>
-    <li>to do 
-        <ul>
-          <li>J'ai tellement de choses à faire. I have so much to do</li>
-        </ul>
-    </li>
-    <li>to make
-        <ul>
-          <li>Je vais faire une liste. I will make a list</li>
-        </ul>
-    </li>
-</ol>
-<p>This is the root page. It should show a basic splash page that says the name of the app and allows the user to login using a single sign-in option with Auth0.</p>
+<div class="splash">
+	<h1>faire</h1>
+	<h2>a to-do app</h2>
+	<div class="ipa">/fɛʀ/</div>
+	<div class="lang">French</div>
+	<div class="pos">VERB</div>
+	<ol class="def-list">
+		<li>
+			to do
+			<ul>
+				<li><span class="fr">J'ai tellement de choses à faire.</span> I have so much to do</li>
+			</ul>
+		</li>
+		<li>
+			to make
+			<ul>
+				<li><span class="fr">Je vais faire une liste.</span> I will make a list</li>
+			</ul>
+		</li>
+	</ol>
+	<p>Login under construction.</p>
+</div>
+
+<style>
+.splash {
+    background-color: bisque;
+}
+</style>
