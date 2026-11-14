@@ -1,6 +1,7 @@
 <script lang="ts">
     import { enhance } from '$app/forms';
     import TodoItem from '#lib/components/TodoItem.svelte';
+	import TodoItemControls from "#lib/components/TodoItemControls.svelte";
     let { data }  = $props();
 </script>
 
@@ -24,4 +25,5 @@
 </form>
 {#each data.todos as todo (todo.id)}
     <TodoItem todo={todo} />
+    <TodoItemControls todo={todo} />
 {/each}
