@@ -1,28 +1,46 @@
-<div class="splash">
-	<h1>faire</h1>
-	<h2>a to-do app</h2>
-	<div class="ipa">/fɛʀ/</div>
-	<div class="lang">French</div>
-	<div class="pos">VERB</div>
-	<ol class="def-list">
-		<li>
-			to do
-			<ul>
-				<li><span class="fr">J'ai tellement de choses à faire.</span> I have so much to do</li>
-			</ul>
-		</li>
-		<li>
-			to make
-			<ul>
-				<li><span class="fr">Je vais faire une liste.</span> I will make a list</li>
-			</ul>
-		</li>
-	</ol>
-	<p>Login under construction.</p>
-</div>
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="box content">
+        <div class="is-flex is-align-items-baseline">
+          <h1 class="is-size-1 has-text-weight-bold mb-0 mr-4" lang="fr">faire</h1>
+          <span class="is-size-4 has-text-weight-light">/fɛʀ/</span>
+        </div>
+
+        <h2 class="is-size-5 is-italic has-text-weight-normal mt-1">a to-do app</h2>
+
+        <p class="mb-0">
+          <span class="is-italic">French</span>
+          | 
+          <span class="is-uppercase is-size-7 has-text-weight-semibold">verb</span>
+        </p>
+
+        <hr >
+
+        <ol>
+          <li>
+            <span class="has-text-weight-semibold">to do</span>
+            <p class="mt-1 mb-0">
+              <span class="is-italic" lang="fr">J'ai tellement de choses à faire.</span>
+              I have so much to do.
+            </p>
+          </li>
+          <li>
+            <span class="has-text-weight-semibold">to make</span>
+            <p class="mt-1 mb-0">
+              <span class="is-italic" lang="fr">Je vais faire une liste.</span>
+              I will make a list.
+            </p>
+          </li>
+        </ol>
+      </div>
+      <p class="has-text-centered">Login under construction.</p>
+    </div>
+  </div>
+</section>
 
 <style>
-.splash {
-    background-color: bisque;
-}
+	.splash {
+		/*background-color: bisque;*/
+	}
 </style>

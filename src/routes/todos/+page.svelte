@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { enhance } from '$app/forms';
-    import TodoItem from '#lib/components/TodoItem.svelte';
-	import TodoItemControls from "#lib/components/TodoItemControls.svelte";
-    let { data }  = $props();
+	import { enhance } from '$app/forms';
+	import TodoItem from '#lib/components/TodoItem.svelte';
+	import TodoItemControls from '#lib/components/TodoItemControls.svelte';
+	let { data } = $props();
 </script>
 
 <p><a href="/done">See Finished Todos</a></p>
@@ -17,14 +17,25 @@
         <li>a button or checkbox that allow you to mark a todo item as done</li>
     </ul></li>
     <li>a link to visit /done</li>
-</ul> -->
-
+    </ul> -->
 <form method="POST" action="?/create" use:enhance>
-    <label>
-        <input type="text" name="text" /><input type="submit" value="Add Todo">
-    </label>
+	<div class="field">
+		<div class="control">
+			<label>
+				<input class="input is-rounded" type="text" name="text" />
+                <input
+                class="button is-primary"
+                type="submit"
+                value="Add Todo"
+				/>
+                <div class="control">
+                </div>
+</div>
+			</label>
+		</div>
+	</div>
 </form>
 {#each data.todos as todo (todo.id)}
-    <TodoItem todo={todo} />
-    <TodoItemControls todo={todo} />
+	<TodoItem {todo} />
+	<TodoItemControls {todo} />
 {/each}
