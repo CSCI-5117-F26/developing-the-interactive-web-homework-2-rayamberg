@@ -28,9 +28,6 @@
                 type="submit"
                 value="Add Todo"
 				/>
-                <div class="control">
-                </div>
-</div>
 			</label>
 		</div>
 	</div>
