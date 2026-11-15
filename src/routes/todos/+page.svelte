@@ -5,34 +5,39 @@
 	let { data } = $props();
 </script>
 
-<p><a href="/done">See Finished Todos</a></p>
-<h1>Todos</h1>
-<!-- <p><strong>This page requires user login. If the user is not logged in redirect to /. There should also be a link to logout</strong></p>
-<p>This page should show a list of to-do items with the following features.</p>
-<ul>
-    <li>a text box and a submit button to create a new todo item</li>
-    <li>a list of to-do items that have not been marked “done”; sorted by most-recently created, and hyperlinked to /todo/:id. Each of these to-do items must have:
-    <ul>
-        <li>a summary of the todo item's contents (if it's too long to display, show a preview limited to one line)</li>
-        <li>a button or checkbox that allow you to mark a todo item as done</li>
-    </ul></li>
-    <li>a link to visit /done</li>
-    </ul> -->
-<form method="POST" action="?/create" use:enhance>
-	<div class="field">
-		<div class="control">
-			<label>
-				<input class="input is-rounded" type="text" name="text" />
-                <input
-                class="button is-primary"
-                type="submit"
-                value="Add Todo"
-				/>
-			</label>
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-half">
+				<h1 class="title">Todos</h1>
+				<p class="mb-4"><a href="/done">See finished todos</a></p>
+
+				<form method="POST" action="?/create" use:enhance class="mb-5">
+					<div class="field is-grouped">
+						<div class="control is-expanded">
+							<input class="input" type="text" name="text" />
+						</div>
+						<div class="control">
+							<button class="button is-primary" type="submit">Add Todo</button>
+						</div>
+					</div>
+				</form>
+
+				<div class="is-flex has-text-weight-bold pb-2">
+					<div class="has-text-centered" style="width: 9rem;">Mark Done</div>
+					<div>Task</div>
+				</div>
+
+				{#each data.todos as todo (todo.id)}
+					<div
+						class="is-flex is-align-items-center py-2"
+						style="border: 0.5px solid; border-radius: 6px;"
+					>
+						<div class="has-text-centered" style="width: 9rem;"><TodoItemControls {todo} /></div>
+						<div><TodoItem {todo} /></div>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</div>
-</form>
-{#each data.todos as todo (todo.id)}
-	<TodoItem {todo} />
-	<TodoItemControls {todo} />
-{/each}
+</section>

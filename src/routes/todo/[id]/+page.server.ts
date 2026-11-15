@@ -1,6 +1,7 @@
 import { getTodo, setDone } from '#lib/server/db.ts'
 
 export async function load({ params }) {
+    //TODO: validation, including null
     return { todo: await getTodo(params.id) };
 }
 
