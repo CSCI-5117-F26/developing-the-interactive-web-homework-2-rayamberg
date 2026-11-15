@@ -18,7 +18,7 @@
 							<input class="input" type="text" name="text" />
 						</div>
 						<div class="control">
-							<button class="button is-primary" type="submit">Add Todo</button>
+							<button class="button is-primary is-light" type="submit">Add Todo</button>
 						</div>
 					</div>
 				</form>
@@ -34,7 +34,7 @@
 						style="border: 0.5px solid; border-radius: 6px;"
 					>
 						<div class="has-text-centered" style="width: 9rem;"><TodoItemControls {todo} /></div>
-						<div><TodoItem {todo} /></div>
+						<div style="min-width: 0; flex: 1"><TodoItem {todo} /></div>
 					</div>
 				{/each}
 			</div>
