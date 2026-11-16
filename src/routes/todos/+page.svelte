@@ -35,6 +35,8 @@
 					>
 						<div class="has-text-centered" style="width: 9rem;"><TodoItemControls {todo} /></div>
 						<div style="min-width: 0; flex: 1"><TodoItem {todo} /></div>
+						<!-- This is where I'm thinking we'll want to put the category -->
+						<!-- <span class="tag">Category</span> -->
 					</div>
 				{/each}
 			</div>
