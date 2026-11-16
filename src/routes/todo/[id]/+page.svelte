@@ -1,5 +1,6 @@
 <script lang="ts">
-	import TodoItemControls from '#lib/components/TodoItemControls.svelte';
+	import TodoDetail from "#lib/components/TodoDetail.svelte";
+	import TodoItem from "#lib/components/TodoItem.svelte";
 
     let { data } = $props();
     let todo = $derived(data.todo); 
@@ -17,9 +18,13 @@
 <h2>Challenge</h2>
 Allow users to change the category of a todo item -->
 
-<p><a href="/todos">Back to Todos</a></p>
-<h1>{todo.text}</h1>
-<p>This todo's done value is: {todo.isDone}</p>
-<p>Its id is {todo.id}</p>
-<p>It was created at {todo.createdAt}</p>
-<TodoItemControls todo={todo} />
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-half">
+				<p class="mb-4"><a href="/todos">Back to todos</a></p>
+                <TodoDetail {todo} />
+			</div>
+		</div>
+	</div>
+</section>
