@@ -2,7 +2,7 @@
     let { todo } = $props();
 </script>
 
-<div class="todo-item">
+<div class="todo-item mr-4">
 <a href="/todo/{todo.id}">{todo.text}</a>
 </div>
 
