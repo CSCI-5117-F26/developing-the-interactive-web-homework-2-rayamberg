@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="columns is-centered">
 			<div class="column is-half">
-				<h1 class="title">Todos</h1>
+				<h1 class="title">Active Todos</h1>
 				<p class="mb-4"><a href="/done">See finished todos</a></p>
 
 				<form method="POST" action="?/create" use:enhance class="mb-5">

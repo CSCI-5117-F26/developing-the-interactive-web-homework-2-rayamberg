@@ -1,20 +1,30 @@
 <script lang="ts">
-    import TodoItem from '#lib/components/TodoItem.svelte';
-    let { data }  = $props();
+	import TodoItem from '#lib/components/TodoItem.svelte';
+	let { data } = $props();
 </script>
 
-<!-- <h1>Done</h1>
-<p><strong>This page requires user login. If the user is not logged in redirect to /. There should also be a link to logout</strong></p>
-<p>This page is just like /todos except:</p>
-<ul>
-    <li>no interface to create new todos</li>
-    <li>show only the todo items that have been marked as done</li>
-    <li>add visual indicator on page that these are done items</li>
-    <li>a link to /todos</li>
-</ul> -->
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-half">
+				<h1 class="title">Completed Todos</h1>
+				<p class="mb-4"><a href="/todos">See active todos</a></p>
 
-<p><a href="/todos">See active todos</a></p>
-<h1>Done Todos</h1>
-{#each data.todos as todo (todo.id)}
-    <TodoItem todo={todo} />
-{/each}
+				{#each data.todos as todo (todo.id)}
+					<div
+						class="is-done is-flex is-align-items-center py-2"
+						style="border: 0.5px solid; border-radius: 6px;"
+					>
+						<div class="ml-2 is-italic" style="min-width: 0; flex: 1;"><TodoItem {todo} /></div>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+    .is-done {
+        opacity: 0.5;
+    }
+</style>
