@@ -3,7 +3,7 @@ import type { Todo } from '#lib/types.js';
 import { MongoClient, ObjectId } from 'mongodb';
 import { MONGODB_URI } from '$app/env/private';
 
-const client =  new MongoClient(MONGODB_URI);
+export const client =  new MongoClient(MONGODB_URI);
 const DB_NAME = 'faire';
 
 export const db = client.db(DB_NAME);
