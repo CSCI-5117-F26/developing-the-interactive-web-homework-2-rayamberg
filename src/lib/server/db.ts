@@ -53,6 +53,13 @@ export async function createTodo(text: string) {
    });
 }
 
+export async function updateTodo(id: string, text: string) {
+   await todosColl.updateOne(
+      { _id: new ObjectId(id)},
+      { $set: { text }}
+   )
+}
+
 export async function deleteTodo(id: string) {
    await todosColl.deleteOne({"_id": new ObjectId(id)})
 }
