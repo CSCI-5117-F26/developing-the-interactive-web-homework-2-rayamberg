@@ -24,3 +24,4 @@ vite.config.ts.timestamp-*
 
 # VSCode
 .vscode
+src/routes/testauth/+page.svelte
