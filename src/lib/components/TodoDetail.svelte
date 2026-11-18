@@ -3,6 +3,7 @@
 	import TodoTextEditable from "./TodoTextEditable.svelte";
 
     let { todo } = $props();
+    let edit_mode = $state(false);
 </script>
 
 <div class="card">
@@ -10,13 +11,17 @@
         <p class="card-header-title">Todo</p>
     </header>
     <div class="card-content">
-      <TodoTextEditable {todo} />
+      <TodoTextEditable {todo} {edit_mode}/>
         <div class="is-flex mb-2">
             <TodoItemControls {todo} /> <span class="ml-2">Done</span>
         </div>
         <footer class="card-footer">
-            <a href="#" class="card-footer-item">Edit</a>
-            <a class="card-footer-item has-text-grey-light" aria-disabled="true">Save</a>
+            {#if edit_mode}
+            <button class="card-footer-item">Save</button>
+            <button class="card-footer-item" onclick={() => { edit_mode = false;}}>Cancel</button>
+            {:else}
+            <button class="card-footer-item" onclick={() => { edit_mode = true; }}>Edit</button>
+            {/if}
         </footer>
     </div>
 </div>
