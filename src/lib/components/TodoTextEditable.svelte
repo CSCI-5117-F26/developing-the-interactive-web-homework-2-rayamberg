@@ -5,7 +5,7 @@ is triggered, will switch it to some kind of text input that can then be saved -
 </script>
 
 {#if edit_mode}
-<textarea name="text" value={todo.text}></textarea>
+<textarea class="textarea has-text-weight-light is-size-3 is-primary" name="text" value={todo.text}></textarea>
 {:else}
 <div class="is-size-2 has-text-weight-light mb-4">
     {todo.text}

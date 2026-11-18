@@ -17,10 +17,10 @@
         </div>
         <footer class="card-footer">
             {#if edit_mode}
-            <button class="card-footer-item">Save</button>
-            <button class="card-footer-item" onclick={() => { edit_mode = false;}}>Cancel</button>
+            <button class="card-footer-item button is-primary is-light">Save</button>
+            <button class="card-footer-item button is-secondary is-light" onclick={() => { edit_mode = false;}}>Cancel</button>
             {:else}
-            <button class="card-footer-item" onclick={() => { edit_mode = true; }}>Edit</button>
+            <button class="card-footer-item button is-primary is-light" onclick={() => { edit_mode = true; }}>Edit</button>
             {/if}
         </footer>
     </div>
