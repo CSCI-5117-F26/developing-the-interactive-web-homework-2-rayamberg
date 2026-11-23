@@ -1,6 +1,11 @@
 import { createTodo, deleteTodo, getTodos, setDone} from '#lib/server/db.ts'
+import { redirect } from "@sveltejs/kit"
 
-export async function load() {
+export async function load(event) {
+	// auth check. 
+	if (!event.locals.user) {
+		redirect(303, '/');
+	}
 	// get all todos where isDone is false (i.e. incomplete)
     return { todos: await getTodos({isDone: false}) };
 }
