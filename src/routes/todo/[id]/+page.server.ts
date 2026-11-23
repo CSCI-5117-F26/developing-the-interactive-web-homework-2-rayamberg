@@ -4,9 +4,9 @@ import { getTodo, updateTodo, setDone } from '#lib/server/db.ts'
 export async function load({ locals, params }) {
 	// auth check. 
 	const user = getAuthedUser(locals);
+	const uid = String(user.id);
 
-	//TODO: validation, including null
-	return { todo: await getTodo(params.id) };
+	return { todo: await getTodo(uid, params.id) };
 }
 
 export const actions = {

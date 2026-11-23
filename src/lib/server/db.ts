@@ -35,9 +35,9 @@ export async function getTodos({ isDone }: { isDone? : boolean } = {}) {
     createdAt: todo.createdAt
    }));
 }
-export async function getTodo(id: string) {
-   const todo = await todosColl.findOne({ _id: new ObjectId(id) }); 
-   if (!todo) return null;
+export async function getTodo(uid: string, id: string) {
+   const todo = await todosColl.findOne({ _id: new ObjectId(id), uid}); 
+   if (!todo) error(400, 'Could not find todo.');
 
    return {
       id: todo._id.toString(),
