@@ -19,18 +19,14 @@ export const actions = {
 
 		await createTodo(uid, text);
 	},
-	delete: async ({ request }) => {
+	toggleDone: async ({ locals, request }) => {
 		const data = await request.formData();
 		const id = String(data.get('id'));
-
-		await deleteTodo(id);
-	},
-	toggleDone: async ({ request }) => {
-		const data = await request.formData();
-		const id = String(data.get('id'));
+		const user = getAuthedUser(locals);
+		const uid = String(user.id);
 		//convert isDone's value from string to boolean
 		const isDone = data.get('isDone') === 'true';
 
-		await setDone(id, isDone);
+		await setDone(uid, id, isDone);
 	}
 };

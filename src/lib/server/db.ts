@@ -2,6 +2,7 @@
 import type { Todo } from '#lib/types.js';
 import { MongoClient, ObjectId } from 'mongodb';
 import { MONGODB_URI } from '$app/env/private';
+import { error } from '@sveltejs/kit';
 
 export const client =  new MongoClient(MONGODB_URI);
 const DB_NAME = 'faire';
@@ -63,13 +64,15 @@ export async function updateTodo(id: string, text: string) {
    )
 }
 
-export async function deleteTodo(id: string) {
-   await todosColl.deleteOne({"_id": new ObjectId(id)})
-}
-
-export async function setDone(id: string, isDone: boolean) {
-   await todosColl.updateOne(
-      { _id: new ObjectId(id) },
+export async function setDone(uid:string, id: string, isDone: boolean) {
+   const result = await todosColl.updateOne(
+      { _id: new ObjectId(id), uid},
       { $set: { isDone }}
    );
+
+   /* This condition will be met if the delete doesn't go through, which could mean funny 
+   business, e.g. user trying to delete another user's todo, or something else */
+   if (result.matchedCount == 0 ) {
+      error(400, 'Count not  mark todo as done!')
+   }
 }
