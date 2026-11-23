@@ -4,9 +4,10 @@ import { createTodo, getTodos, setDone} from '#lib/server/db.ts'
 export async function load(event) {
 	// auth check. 
 	const user = getAuthedUser(event.locals);
+	const uid = String(user.id);
 
 	// get all todos where isDone is false (i.e. incomplete)
-    return { todos: await getTodos({isDone: false}) };
+    return { todos: await getTodos(uid, {isDone: false}) };
 }
 
 export const actions = {

@@ -16,10 +16,10 @@ export const todosColl = db.collection('todos');
 /* getTodos() by default will return ALL todos. If you want just the active todos (not completed)
 , then call getTodos({isDone: false}) and if you want only completed todos, call it with 
 {isDone: true} */
-export async function getTodos({ isDone }: { isDone? : boolean } = {}) {
-   let filter : { isDone? : boolean } = {}
+export async function getTodos(uid: string, { isDone }: { isDone? : boolean } = {}) {
+   let filter : { uid:string, isDone? : boolean } = { uid }
    if (isDone !== undefined) {
-      filter =  { isDone };
+      filter =  { uid, isDone };
    }
    /* we need to await toArray() since reading from find() returns one at a time for time 
    efficiency. We also sort by most recent, hence createdAt: -1 in the filter */
