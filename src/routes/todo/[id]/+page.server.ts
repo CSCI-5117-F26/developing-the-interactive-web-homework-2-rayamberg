@@ -10,12 +10,14 @@ export async function load({ locals, params }) {
 }
 
 export const actions = {
-	update: async ({ request }) => {
+	update: async ({ locals, request }) => {
 		const data = await request.formData();
 		const id = String(data.get('id'));
+		const user = getAuthedUser(locals);
+		const uid = String(user.id);
 		const text = String(data.get('text'));
 
-		await updateTodo(id, text);
+		await updateTodo(uid, id, text);
 	},
 	toggleDone: async ({ locals, request }) => {
 		const data = await request.formData();

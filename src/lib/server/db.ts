@@ -57,11 +57,15 @@ export async function createTodo(uid: string, text: string) {
    });
 }
 
-export async function updateTodo(id: string, text: string) {
-   await todosColl.updateOne(
-      { _id: new ObjectId(id)},
+export async function updateTodo(uid:string, id: string, text: string) {
+   const result = await todosColl.updateOne(
+      { _id: new ObjectId(id), uid},
       { $set: { text }}
-   )
+   );
+
+   if (result.matchedCount == 0) {
+      error(400, 'Could not update todo')
+   }
 }
 
 export async function setDone(uid:string, id: string, isDone: boolean) {
