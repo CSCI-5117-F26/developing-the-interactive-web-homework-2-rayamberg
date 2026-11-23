@@ -2,17 +2,17 @@ import { getTodo, updateTodo, setDone } from '#lib/server/db.ts'
 import { redirect } from '@sveltejs/kit';
 
 export async function load({ locals, params }) {
-		// auth check. 
-		if (!locals.user) {
-			redirect(303, '/');
-		}
+	// auth check. 
+	if (!locals.user) {
+		redirect(303, '/');
+	}
 
-    //TODO: validation, including null
-    return { todo: await getTodo(params.id) };
+	//TODO: validation, including null
+	return { todo: await getTodo(params.id) };
 }
 
 export const actions = {
-	update: async ({request}) => {
+	update: async ({ request }) => {
 		const data = await request.formData();
 		const id = String(data.get('id'));
 		const text = String(data.get('text'));
