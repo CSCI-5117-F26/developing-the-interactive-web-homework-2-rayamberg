@@ -3,10 +3,12 @@
 	import { goto } from '$app/navigation';
 	const session = authClient.useSession();
 
-	/* signIn handler code stolen from better auth documentation */
+	/* signIn handler code stolen from better auth documentation. sign up additions my own */
+	let name = $state('');
 	let email = $state('');
 	let password = $state('');
 	let error = $state('');
+	let isSignUp = $state(false);
 
 	async function handleSignIn(e: SubmitEvent) {
 		e.preventDefault();
@@ -17,6 +19,19 @@
 			return;
 		}
 		//on successful login, redirect to todos list
+		await goto('/todos');
+	}
+
+	async function handleSignUp(e: SubmitEvent) {
+		e.preventDefault();
+		error = '';
+
+		const { error: err } = await authClient.signUp.email({ name, email, password });
+		if (err) {
+			error = err.message ?? 'Sign Up failed';
+			return;
+		}
+		//on successful sign up, redirect to todos list
 		await goto('/todos');
 	}
 </script>
@@ -61,11 +76,17 @@
 	</div>
 	<div class="columns is-centered">
 		<div class="column is-one-quarter">
-			<form onsubmit={handleSignIn}>
+			<form onsubmit={isSignUp ? handleSignUp : handleSignIn}>
 				<div class="field">
 					<div>
 						{#if error}<p>{error}</p>{/if}
 					</div>
+					   {#if isSignUp}
+				    <div class="control mb-2">
+						<input class="input" bind:value={name} type="text" placeholder="Name" required />
+					</div>
+					{/if}
+
 					<div class="control mb-2">
 						<input class="input" bind:value={email} type="email" placeholder="Email" required />
 					</div>
@@ -79,7 +100,10 @@
 						/>
 					</div>
 					<div class="control">
-						<button class="button is-primary is-light is-fullwidth">Sign In</button>
+						<button class="button is-primary is-light is-fullwidth">{isSignUp ? "Sign Up" : "Sign In" }</button>
+					</div>
+					<div class="control">
+						<button class="button is-text is-small" onclick={() => { isSignUp = !isSignUp;}} >{isSignUp ? "Back to Sign In" : "Don't have an account? Sign Up" }</button>
 					</div>
 				</div>
 			</form>
