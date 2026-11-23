@@ -28,6 +28,7 @@ export async function getTodos({ isDone }: { isDone? : boolean } = {}) {
    string. Let's return that array instead.*/
    return todos.map((todo) => ({
     id: todo._id.toString(),
+    uid: todo.uid,
     text: todo.text,
     isDone: todo.isDone,
     createdAt: todo.createdAt
@@ -39,14 +40,16 @@ export async function getTodo(id: string) {
 
    return {
       id: todo._id.toString(),
+      uid: todo.uid,
       text: todo.text,
       isDone: todo.isDone,
       createdAt: todo.createdAt
    }
 }
 
-export async function createTodo(text: string) {
+export async function createTodo(uid: string, text: string) {
    await todosColl.insertOne({ 
+      uid: uid,
       text: text, 
       isDone: false,
       createdAt: new Date() 

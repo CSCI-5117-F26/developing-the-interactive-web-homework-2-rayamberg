@@ -20,5 +20,4 @@ Please fill out all of the following sections to help us grade your submission:
 
 
 ## Any Extra Notes?
-
-Fill in this with anything else you would like us to know about your submission.
+- I chose the name faire because I saw the word "svelte" came from French. Faire is svelte for todo.

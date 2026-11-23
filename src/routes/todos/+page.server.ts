@@ -1,21 +1,23 @@
+import { getAuthedUser } from '#lib/server/auth-helpers.js';
 import { createTodo, deleteTodo, getTodos, setDone} from '#lib/server/db.ts'
 import { redirect } from "@sveltejs/kit"
 
 export async function load(event) {
 	// auth check. 
-	if (!event.locals.user) {
-		redirect(303, '/');
-	}
+	const user = getAuthedUser(event.locals);
+
 	// get all todos where isDone is false (i.e. incomplete)
     return { todos: await getTodos({isDone: false}) };
 }
 
 export const actions = {
-	create: async ({ request }) => {
+	create: async ({ locals, request }) => {
 		const data = await request.formData();
         const text = String(data.get('text'));
+		const user = getAuthedUser(locals);
+		const uid = String(user.id);
 
-		await createTodo(text);
+		await createTodo(uid, text);
 	},
 	delete: async ({ request }) => {
 		const data = await request.formData();
