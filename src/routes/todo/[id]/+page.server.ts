@@ -1,6 +1,5 @@
 import { getAuthedUser } from '#lib/server/auth-helpers.js';
 import { getTodo, updateTodo, setDone } from '#lib/server/db.ts'
-import { redirect } from '@sveltejs/kit';
 
 export async function load({ locals, params }) {
 	// auth check. 
