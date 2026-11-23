@@ -61,43 +61,28 @@
 	</div>
 	<div class="columns is-centered">
 		<div class="column is-one-quarter">
-			{#if $session.data}
-				<div>
-					<p>
-						{$session.data.user.name}
-					</p>
-					<button
-						onclick={async () => {
-							await authClient.signOut();
-						}}
-					>
-						Sign Out
-					</button>
-				</div>
-			{:else}
-				<form onsubmit={handleSignIn}>
-					<div class="field">
-						<div>
-							{#if error}<p>{error}</p>{/if}
-						</div>
-						<div class="control mb-2">
-							<input class="input" bind:value={email} type="email" placeholder="Email" required />
-						</div>
-						<div class="control mb-2">
-							<input
-								class="input"
-								bind:value={password}
-								type="password"
-								placeholder="Password"
-								required
-							/>
-						</div>
-						<div class="control">
-							<button class="button is-primary is-light is-fullwidth">Sign In</button>
-						</div>
+			<form onsubmit={handleSignIn}>
+				<div class="field">
+					<div>
+						{#if error}<p>{error}</p>{/if}
 					</div>
-				</form>
-			{/if}
+					<div class="control mb-2">
+						<input class="input" bind:value={email} type="email" placeholder="Email" required />
+					</div>
+					<div class="control mb-2">
+						<input
+							class="input"
+							bind:value={password}
+							type="password"
+							placeholder="Password"
+							required
+						/>
+					</div>
+					<div class="control">
+						<button class="button is-primary is-light is-fullwidth">Sign In</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </section>
