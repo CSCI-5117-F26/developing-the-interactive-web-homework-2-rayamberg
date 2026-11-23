@@ -1,3 +1,19 @@
+<script lang="ts">
+	import { authClient } from '#lib/auth-client.js';
+	const session = authClient.useSession();
+
+	let email = $state('');
+	let password = $state('');
+	let error = $state('');
+
+	async function handleSignIn(e: SubmitEvent) {
+		e.preventDefault();
+		error = '';
+		const { error: err } = await authClient.signIn.email({ email, password });
+		if (err) error = err.message ?? 'Sign in failed';
+	}
+</script>
+
 <section class="section">
 	<div class="columns is-centered">
 		<div class="column is-half">
@@ -38,26 +54,43 @@
 	</div>
 	<div class="columns is-centered">
 		<div class="column is-one-quarter">
-			<form method="POST" action="">
-				<div class="field">
-					<div class="control mb-2">
-						<input class="input" type="text" placeholder="Login" required />
-					</div>
-					<div class="control mb-2">
-						<input class="input" type="password" placeholder="Password" required />
-					</div>
-					<div class="control">
-						<input class="button is-primary is-light is-fullwidth" type="submit" value="Login" />
-					</div>
+			{#if $session.data}
+				<div>
+					<p>
+						{$session.data.user.name}
+					</p>
+					<button
+						onclick={async () => {
+							await authClient.signOut();
+						}}
+					>
+						Sign Out
+					</button>
 				</div>
-        <p>Login under construction. This doesn't work yet.</p>
-			</form>
+			{:else}
+				<form onsubmit={handleSignIn}>
+					<div class="field">
+						<div>
+							{#if error}<p>{error}</p>{/if}
+						</div>
+						<div class="control mb-2">
+							<input class="input" bind:value={email} type="email" placeholder="Email" required />
+						</div>
+						<div class="control mb-2">
+							<input
+								class="input"
+								bind:value={password}
+								type="password"
+								placeholder="Password"
+								required
+							/>
+						</div>
+						<div class="control">
+							<button class="button is-primary is-light is-fullwidth">Sign In</button>
+						</div>
+					</div>
+				</form>
+			{/if}
 		</div>
 	</div>
 </section>
-
-<style>
-	.splash {
-		/*background-color: bisque;*/
-	}
-</style>
