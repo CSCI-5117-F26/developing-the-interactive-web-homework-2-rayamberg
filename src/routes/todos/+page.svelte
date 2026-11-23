@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import TodoItem from '#lib/components/TodoItem.svelte';
 	import TodoItemControls from '#lib/components/TodoItemControls.svelte';
+	import AuthPanel from '#lib/components/AuthPanel.svelte';
 	let { data } = $props();
 </script>
 
@@ -9,6 +10,7 @@
 	<div class="container">
 		<div class="columns is-centered">
 			<div class="column is-half">
+				<AuthPanel />
 				<h1 class="title">Active Todos</h1>
 				<p class="mb-4"><a href="/done">See finished todos</a></p>
 

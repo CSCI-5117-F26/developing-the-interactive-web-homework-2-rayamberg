@@ -1,5 +1,6 @@
 <script lang="ts">
-	import TodoDetail from "#lib/components/TodoDetail.svelte";
+	import AuthPanel from "#lib/components/AuthPanel.svelte";
+import TodoDetail from "#lib/components/TodoDetail.svelte";
 	import TodoItem from "#lib/components/TodoItem.svelte";
 
     let { data } = $props();
@@ -22,6 +23,7 @@ Allow users to change the category of a todo item -->
 	<div class="container">
 		<div class="columns is-centered">
 			<div class="column is-half">
+				<AuthPanel />
 				<p class="mb-4"><a href="/todos">Back to todos</a></p>
                 <TodoDetail {todo} />
 			</div>

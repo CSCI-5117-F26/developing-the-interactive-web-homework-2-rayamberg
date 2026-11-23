@@ -1,5 +1,6 @@
 <script lang="ts">
-	import TodoItem from '#lib/components/TodoItem.svelte';
+	import AuthPanel from '#lib/components/AuthPanel.svelte';
+import TodoItem from '#lib/components/TodoItem.svelte';
 	let { data } = $props();
 </script>
 
@@ -7,6 +8,7 @@
 	<div class="container">
 		<div class="columns is-centered">
 			<div class="column is-half">
+				<AuthPanel />
 				<h1 class="title">Completed Todos</h1>
 				<p class="mb-4"><a href="/todos">See active todos</a></p>
 
