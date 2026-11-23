@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { authClient } from '#lib/auth-client.js';
+	import { goto } from '$app/navigation';
 	const session = authClient.useSession();
 
+	/* signIn handler code stolen from better auth documentation */
 	let email = $state('');
 	let password = $state('');
 	let error = $state('');
@@ -10,7 +12,12 @@
 		e.preventDefault();
 		error = '';
 		const { error: err } = await authClient.signIn.email({ email, password });
-		if (err) error = err.message ?? 'Sign in failed';
+		if (err) {
+			error = err.message ?? 'Sign in failed';
+			return;
+		}
+		//on successful login, redirect to todos list
+		await goto('/todos');
 	}
 </script>
 
