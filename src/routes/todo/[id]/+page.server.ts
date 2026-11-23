@@ -1,6 +1,12 @@
 import { getTodo, updateTodo, setDone } from '#lib/server/db.ts'
+import { redirect } from '@sveltejs/kit';
 
-export async function load({ params }) {
+export async function load({ locals, params }) {
+		// auth check. 
+		if (!locals.user) {
+			redirect(303, '/');
+		}
+
     //TODO: validation, including null
     return { todo: await getTodo(params.id) };
 }
