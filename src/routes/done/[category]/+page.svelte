@@ -13,6 +13,7 @@
 				<AuthPanel />
 				<h1 class="title">Completed Todos</h1>
 				<h2 class="subtitle">{data.category}</h2>
+				<p class="mb-4"><a href="/todos">Back to all todos</a></p>
 				<p class="mb-4"><a href="/todos/{data.category}">See active {data.category} todos</a></p>
 				{#each data.todos as todo (todo.id)}
 					<div
@@ -26,3 +27,9 @@
 		</div>
 	</div>
 </section>
+
+<style>
+    .is-done {
+        opacity: 0.5;
+    }
+</style>

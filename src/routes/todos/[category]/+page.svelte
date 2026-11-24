@@ -13,6 +13,7 @@
 				<AuthPanel />
 				<h1 class="title">Active Todos</h1>
 				<h2 class="subtitle">{data.category}</h2>
+				<p class="mb-4"><a href="/todos">Back to all todos</a></p>
 				<p class="mb-4"><a href="/done/{data.category}">See finished {data.category} todos</a></p>
 
 				<form method="POST" action="?/create" use:enhance class="mb-5">
