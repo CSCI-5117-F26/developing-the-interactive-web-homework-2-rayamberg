@@ -33,7 +33,8 @@ export async function getTodos(uid: string, { isDone }: { isDone? : boolean } = 
     uid: todo.uid,
     text: todo.text,
     isDone: todo.isDone,
-    createdAt: todo.createdAt
+    createdAt: todo.createdAt,
+    ...(todo.category && { category: todo.category})
    }));
 }
 export async function getTodo(uid: string, id: string) {
@@ -49,13 +50,18 @@ export async function getTodo(uid: string, id: string) {
    }
 }
 
-export async function createTodo(uid: string, text: string) {
-   await todosColl.insertOne({ 
-      uid: uid,
-      text: text, 
-      isDone: false,
+export async function createTodo(uid: string, text: string, category?: string) {
+   let newTodo = { 
+      uid, 
+      text, 
+      isDone: false, 
       createdAt: new Date() 
-   });
+   };
+   
+   //googled this one: this adds category key and value only if category is passed.
+   newTodo = { ...newTodo, ...( category && { category })}
+   
+   await todosColl.insertOne(newTodo);
 }
 
 export async function updateTodo(uid:string, id: string, text: string) {

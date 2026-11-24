@@ -1,10 +1,44 @@
-<h1>todos/:category</h1>
-<p>This is the route for the challenge. These pages show a filtered view of the full to do list only showing those items that belong to the category. If you create a todo item from todos/:category it should automatically add that item to that category</p>
+<script lang="ts">
+	import { enhance } from '$app/forms';
+	import TodoItem from '#lib/components/TodoItem.svelte';
+	import TodoItemControls from '#lib/components/TodoItemControls.svelte';
+	import AuthPanel from '#lib/components/AuthPanel.svelte';
+	let { data } = $props();
+</script>
 
-<h2>Challenge:</h2>
-Extend todos:
-<ul>
-    <li>show the list of categories as links, the links go to /todos/:category. In other words, keep the existing functionality of /todos (show all of the active to-do items) but also include a list of categories that allows the user to filter to items belonging to that category.</li>
-    <li>allow the user to create categories</li>
-    <li>allow the user to delete categories. Once deleted, these should no longer show up anywhere in the app. You do not need to trigger a cascading delete. Thinking maybe just strip them of a category.</li>
-</ul>
+<section class="section">
+	<div class="container">
+		<div class="columns is-centered">
+			<div class="column is-half">
+				<AuthPanel />
+				<h1 class="title">Active Todos</h1>
+				<p class="mb-4"><a href="/done">See finished todos</a></p>
+
+				<form method="POST" action="?/create" use:enhance class="mb-5">
+					<div class="field is-grouped">
+						<div class="control is-expanded">
+							<input class="input" type="text" name="text" />
+						</div>
+						<div class="control">
+							<button class="button is-primary is-light" type="submit">Add Todo</button>
+						</div>
+					</div>
+				</form>
+				<div class="is-flex has-text-weight-bold pb-2">
+					<div class="has-text-centered" style="width: 9rem;">Mark Done</div>
+					<div>Task</div>
+				</div>
+
+				{#each data.todos as todo (todo.id)}
+					<div
+						class="is-flex is-align-items-center py-2"
+						style="border: 0.5px solid; border-radius: 6px;"
+					>
+						<div class="has-text-centered" style="width: 9rem;"><TodoItemControls {todo} /></div>
+						<div style="min-width: 0; flex: 1"><TodoItem {todo} /></div>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</div>
+</section>

@@ -7,7 +7,7 @@
 
 <div class="box content">
 	{#each categories as category}
-		<span class="tag is-link is-light m-2"><a class="has-text-black" href="/todo/{category.name}">{category.name}</a>
+		<span class="tag is-link is-light m-2"><a class="has-text-black" href="/todos/{category.name}">{category.name}</a>
         <form method="POST" action="?/deleteCat" use:enhance>
             <input type="hidden" name="id" value={category.id} />
             <button type="submit" class="delete is-small"></button>
