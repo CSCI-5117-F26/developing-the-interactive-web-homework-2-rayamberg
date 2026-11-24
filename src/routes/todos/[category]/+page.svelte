@@ -12,7 +12,8 @@
 			<div class="column is-half">
 				<AuthPanel />
 				<h1 class="title">Active Todos</h1>
-				<p class="mb-4"><a href="/done">See finished todos</a></p>
+				<h2 class="subtitle">{data.category}</h2>
+				<p class="mb-4"><a href="/done/{data.category}">See finished {data.category} todos</a></p>
 
 				<form method="POST" action="?/create" use:enhance class="mb-5">
 					<div class="field is-grouped">

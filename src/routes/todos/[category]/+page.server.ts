@@ -1,17 +1,23 @@
 import { getAuthedUser } from '#lib/server/auth-helpers.js';
-import { createCategory, createTodo, deleteCategory, getCategories, getTodos, setDone} from '#lib/server/db.ts'
+import { catColl, createCategory, createTodo, deleteCategory, getCategories, getTodos, setDone} from '#lib/server/db.ts'
+import { error } from '@sveltejs/kit';
 
 export async function load(event) {
     // auth check. 
     const user = getAuthedUser(event.locals);
     const uid = String(user.id);
     
-    const category = event.params.category //user input. validate!
-
+    //category check
+    const category = await catColl.findOne({ uid, name: event.params.category});
+    if (!category) {
+        error(404, 'No category found.')
+    }
+        
     // get all todos where isDone is false (i.e. incomplete)
     return { 
-        todos: await getTodos(uid, {isDone: false, category: category}),
-        categories: await getCategories(uid)
+        todos: await getTodos(uid, {isDone: false, category: category.name}),
+        categories: await getCategories(uid),
+        category: category.name
      };
 }
 
