@@ -20,4 +20,4 @@ Please fill out all of the following sections to help us grade your submission:
 
 
 ## Any Extra Notes?
-- I chose the name faire because I saw the word "svelte" came from French. Faire is svelte for todo.
+- I chose the name faire because I saw the word "svelte" came from French. Faire is svelte for todo 👨🏻‍🎨..
