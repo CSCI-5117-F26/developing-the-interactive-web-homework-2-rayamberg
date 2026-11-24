@@ -5,9 +5,12 @@ export async function load(event) {
     // auth check. 
     const user = getAuthedUser(event.locals);
     const uid = String(user.id);
+    
+    const category = event.params.category //user input. validate!
+
     // get all todos where isDone is false (i.e. incomplete)
     return { 
-        todos: await getTodos(uid, {isDone: false}),
+        todos: await getTodos(uid, {isDone: false, category: category}),
         categories: await getCategories(uid)
      };
 }
