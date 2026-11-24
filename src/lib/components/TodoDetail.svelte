@@ -31,10 +31,10 @@
 				</form>
                 {:else}
         <div class="is-size-2 has-text-weight-light mb-4">{todo.text}</div>
-		<div class="is-flex mb-2">
+		<div class="is-flex is-justify-content-space-between mb-2">
    
-			<TodoItemControls {todo} /> <span class="ml-2">Done</span>
-			<CategoryDropdown {todo} {categories} />
+			<div class="is-flex"><TodoItemControls {todo} /><span class="ml-2">Done</span></div>
+			<div class="is-flex">Category: <CategoryDropdown {todo} {categories} /></div>
 		</div>
 		<footer class="card-footer">
 				<button
