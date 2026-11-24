@@ -1,5 +1,5 @@
 import { getAuthedUser } from '#lib/server/auth-helpers.js';
-import { getTodo, updateTodo, setDone, getCategories } from '#lib/server/db.ts'
+import { getTodo, updateTodo, setDone, getCategories, setCategory } from '#lib/server/db.ts'
 
 export async function load({ locals, params }) {
 	// auth check. 
@@ -31,5 +31,13 @@ export const actions = {
 		const isDone = data.get('isDone') === 'true';
 
 		await setDone(uid, id, isDone);
+	},
+	updateCat: async ({locals, request}) => {
+		const data = await request.formData();
+		const id = String(data.get('id'));
+		const user = getAuthedUser(locals);
+		const uid = String(user.id);
+		const category = String(data.get('category'));
+		await setCategory(uid, id, category);
 	}
 };
