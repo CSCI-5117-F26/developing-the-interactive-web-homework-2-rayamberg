@@ -109,10 +109,20 @@ export async function createCategory(uid: string, name: string) {
 }
 
 export async function deleteCategory(uid: string, id: string) {
-   const result = await catColl.deleteOne({ _id: new ObjectId(id), uid });
+   //get category to use its name later
+   const cat = await catColl.findOne({_id: new ObjectId(id), uid });
+
+   const result = await catColl.deleteOne({ _id: cat._id });
+
    if (result.deletedCount == 0) {
       error(400, 'Could not delete category');
    }
+
+   // remove category from the todos that have it.
+   await todosColl.updateMany(
+      { uid, category: cat.name },
+      { $unset: { category: "" }}
+   );
 }
 
 export async function setCategory(uid: string, id: string, category: string) {
