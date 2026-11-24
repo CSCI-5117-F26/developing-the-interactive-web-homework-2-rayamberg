@@ -1,7 +1,8 @@
 <script lang="ts">
 	import TodoItemControls from './TodoItemControls.svelte';
+	import CategoryDropdown from './CategoryDropdown.svelte';
 
-	let { todo } = $props();
+	let { todo, categories } = $props();
 	let edit_mode = $state(false);
 
     function focus(element: HTMLElement) {
@@ -33,6 +34,7 @@
 		<div class="is-flex mb-2">
    
 			<TodoItemControls {todo} /> <span class="ml-2">Done</span>
+			<CategoryDropdown {todo} {categories} />
 		</div>
 		<footer class="card-footer">
 				<button

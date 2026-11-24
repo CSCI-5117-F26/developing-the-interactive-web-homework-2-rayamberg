@@ -5,6 +5,7 @@ import TodoDetail from "#lib/components/TodoDetail.svelte";
 
     let { data } = $props();
     let todo = $derived(data.todo); 
+	let categories = $derived(data.categories);
 </script>
 
 <!-- <h1>todo/[id]</h1>
@@ -25,7 +26,7 @@ Allow users to change the category of a todo item -->
 			<div class="column is-half">
 				<AuthPanel />
 				<p class="mb-4"><a href="/todos">Back to todos</a></p>
-                <TodoDetail {todo} />
+                <TodoDetail {todo} {categories} />
 			</div>
 		</div>
 	</div>

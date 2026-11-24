@@ -48,7 +48,8 @@ export async function getTodo(uid: string, id: string) {
       uid: todo.uid,
       text: todo.text,
       isDone: todo.isDone,
-      createdAt: todo.createdAt
+      createdAt: todo.createdAt,
+      ...(todo.category && { category: todo.category})
    }
 }
 
