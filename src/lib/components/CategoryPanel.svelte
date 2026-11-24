@@ -6,7 +6,8 @@
 
 <div class="box content">
 	{#each categories as category}
-		<span class="tag is-link is-light m-2"><a href="/todo/{category}">{category}</a></span>
+		<span class="tag is-link is-light m-2"><a href="/todo/{category}">{category}</a><a href="#" class="ml-3"><small>❌</small></a></span>
+        
 	{:else}
 		<p>No categories created.</p>
 	{/each}
