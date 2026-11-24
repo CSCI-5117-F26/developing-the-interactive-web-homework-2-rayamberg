@@ -13,6 +13,7 @@
 				<div class="has-text-centered">
 					<h1 class="title">404</h1>
                     <p>Sorry the requested resource could not be found.</p>
+                    <p><a href="/todos">Back to todos</a></p>
 				</div>
 
 			</div>
