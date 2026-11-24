@@ -1,13 +1,15 @@
 import { getAuthedUser } from '#lib/server/auth-helpers.js';
-import { createTodo, getTodos, setDone} from '#lib/server/db.ts'
+import { createCategory, createTodo, deleteCategory, getCategories, getTodos, setDone} from '#lib/server/db.ts'
 
 export async function load(event) {
 	// auth check. 
 	const user = getAuthedUser(event.locals);
 	const uid = String(user.id);
-
 	// get all todos where isDone is false (i.e. incomplete)
-    return { todos: await getTodos(uid, {isDone: false}) };
+    return { 
+		todos: await getTodos(uid, {isDone: false}),
+		categories: await getCategories(uid)
+	 };
 }
 
 export const actions = {
@@ -28,5 +30,21 @@ export const actions = {
 		const isDone = data.get('isDone') === 'true';
 
 		await setDone(uid, id, isDone);
+	},
+    createCat: async ({ locals, request }) => {
+        const data = await request.formData();
+        const name = String(data.get('name'));
+        const user = getAuthedUser(locals);
+        const uid = String(user.id);
+
+        await createCategory(uid, name);
+    },
+	deleteCat: async ({ locals, request }) => {
+		const data = await request.formData();
+		const id = String(data.get('id'));
+		const user = getAuthedUser(locals);
+		const uid = String(user.id);
+
+		await deleteCategory(uid, id);
 	}
 };

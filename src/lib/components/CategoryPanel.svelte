@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 
-	const categories = ['butthole', 'mooth'];
+    // consider making a Category type in types.ts
+	let { categories } = $props();
 </script>
 
 <div class="box content">
 	{#each categories as category}
-		<span class="tag is-link is-light m-2"><a href="/todo/{category}">{category}</a><a href="#" class="ml-3"><small>❌</small></a></span>
-        
+		<span class="tag is-link is-light m-2"><a class="has-text-black" href="/todo/{category.name}">{category.name}</a>
+        <form method="POST" action="?/deleteCat" use:enhance>
+            <input type="hidden" name="id" value={category.id} />
+            <button type="submit" class="delete is-small"></button>
+        </form>
+        </span> 
 	{:else}
 		<p>No categories created.</p>
 	{/each}
@@ -17,7 +22,7 @@
 				<input
 					class="input is-small"
 					type="text"
-					name="category"
+					name="name"
 					placeholder="Add new category..."
 				/>
 			</div>

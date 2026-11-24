@@ -9,6 +9,7 @@ const DB_NAME = 'faire';
 
 export const db = client.db(DB_NAME);
 export const todosColl = db.collection('todos');
+export const catColl = db.collection('categories');
 
 /*TODO: Pun intended. 
 - add return types for the exported functions. Apparently it's good practice to do that in TS */
@@ -78,5 +79,29 @@ export async function setDone(uid:string, id: string, isDone: boolean) {
    business, e.g. user trying to delete another user's todo, or something else */
    if (result.matchedCount == 0 ) {
       error(400, 'Count not  mark todo as done!')
+   }
+}
+
+export async function getCategories(uid: string) {
+   const cats = await catColl.find({ uid }).toArray();
+
+   return cats.map((cat) => ({
+      id: cat._id.toString(),
+      name: cat.name
+   }));
+}
+
+export async function createCategory(uid: string, name: string) {
+   //still needs validation
+   await catColl.insertOne({
+      uid,
+      name
+   })
+}
+
+export async function deleteCategory(uid: string, id: string) {
+   const result = await catColl.deleteOne( {_id: new ObjectId(id), uid });
+   if ( result.deletedCount == 0) {
+      error(400, 'Could not delete category');
    }
 }
