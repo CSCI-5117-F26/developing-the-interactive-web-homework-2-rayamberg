@@ -3,6 +3,7 @@
 	import TodoItem from '#lib/components/TodoItem.svelte';
 	import TodoItemControls from '#lib/components/TodoItemControls.svelte';
 	import AuthPanel from '#lib/components/AuthPanel.svelte';
+	import CategoryPanel from '#lib/components/CategoryPanel.svelte';
 	let { data } = $props();
 </script>
 
@@ -24,7 +25,8 @@
 						</div>
 					</div>
 				</form>
-
+				<h2 class="subtitle">Categories</h2>
+				<CategoryPanel />
 				<div class="is-flex has-text-weight-bold pb-2">
 					<div class="has-text-centered" style="width: 9rem;">Mark Done</div>
 					<div>Task</div>
